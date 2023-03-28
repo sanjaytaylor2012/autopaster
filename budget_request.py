@@ -47,7 +47,7 @@ def decrement_array():
         current_array = len(strings) - 1
     else:
         current_array -= 1
-    print("incrementing arrays")
+    print("decrementing arrays")
     time.sleep(0.1)
 
 
