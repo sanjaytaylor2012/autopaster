@@ -4,16 +4,19 @@ import time
 import pyautogui
 
 # your info here
-strings = ["sup", "bro" , "dude", 'ski']
+strings = [["sup", "bro" , "dude", 'ski'], ["whats", "good", "homie"], ["not", "much", "hbu"]]
+
 
 current_index = 0
+current_array = 0
 
 
 def on_hotkey_press():
     global current_index
-    s = strings[current_index]
+    global current_array
+    s = strings[current_array][current_index]
     pyperclip.copy(s)
-    current_index = (current_index + 1) % len(strings)
+    current_index = (current_index + 1) % len(strings[current_array])
     print(f"Pasting: {s}")
     pyautogui.write(s)
     time.sleep(0.1)
@@ -25,9 +28,27 @@ def reset():
     print("resetting cycle")
     time.sleep(0.1)
 
+def change_array():
+    global current_array
+    global current_index
+    current_index = 0
+    if current_array == len(strings):
+        current_array = 0
+    else:
+        current_array += 1
+    print("changing arrays")
+    time.sleep(0.1)
+
+
+
+
 pyperclip.copy("")
 keyboard.add_hotkey("left arrow", on_hotkey_press)
 keyboard.add_hotkey("right arrow", reset)
+keyboard.add_hotkey("up arrow", change_array)
+
+
+
 
 
 keyboard.wait()
