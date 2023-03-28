@@ -28,15 +28,26 @@ def reset():
     print("resetting cycle")
     time.sleep(0.1)
 
-def change_array():
+def increment_array():
     global current_array
     global current_index
     current_index = 0
-    if current_array == len(strings):
+    if current_array == len(strings) - 1:
         current_array = 0
     else:
         current_array += 1
-    print("changing arrays")
+    print("incrementing arrays")
+    time.sleep(0.1)
+
+def decrement_array():
+    global current_array
+    global current_index
+    current_index = 0
+    if current_array == 0:
+        current_array = len(strings) - 1
+    else:
+        current_array -= 1
+    print("incrementing arrays")
     time.sleep(0.1)
 
 
@@ -45,7 +56,9 @@ def change_array():
 pyperclip.copy("")
 keyboard.add_hotkey("left arrow", on_hotkey_press)
 keyboard.add_hotkey("right arrow", reset)
-keyboard.add_hotkey("up arrow", change_array)
+keyboard.add_hotkey("up arrow", increment_array)
+keyboard.add_hotkey("down arrow", decrement_array)
+
 
 
 
