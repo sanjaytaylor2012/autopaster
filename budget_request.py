@@ -1,7 +1,7 @@
 import keyboard
 import pyperclip
 import time
-
+import pyautogui
 
 # your info here
 strings = ["sup", "bro" , "dude", 'ski']
@@ -16,6 +16,7 @@ def on_hotkey_press():
     pyperclip.copy(s)
     current_index = (current_index + 1) % len(strings)
     print(f"Pasting: {s}")
+    pyautogui.write(s)
     time.sleep(0.1)
 
 
@@ -26,8 +27,8 @@ def reset():
     time.sleep(0.1)
 
 pyperclip.copy("")
-keyboard.add_hotkey("ctrl+v", on_hotkey_press)
-keyboard.add_hotkey("ctrl+q", reset)
+keyboard.add_hotkey("left arrow", on_hotkey_press)
+keyboard.add_hotkey("right arrow", reset)
 
 
 keyboard.wait()
